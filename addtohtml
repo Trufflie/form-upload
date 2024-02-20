@@ -1,0 +1,26 @@
+<script>
+        const form = document.querySelector("#myForm"); /** Change this! be sure to add your own id to your html */
+/** html form should be like this <form id="myForm" action="#" method="post"> */
+/** Change the target if you plan on running this script externally, but I haven't tested that so it may not work? */
+        const scriptURL =
+            '<YOUR URL GOES HERE>;
+/** Be sure to add your own URL, if you aren't sure what it is, refer to the readme */
+    
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+    
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then((response) => {
+                    if (response.ok) {
+                        alert('Success!');
+                        form.reset();
+                    } else {
+                        throw new Error('Error while submitting the form');
+                    }
+                })
+                .catch((error) => {
+                    alert('Error!', error.message);
+                });
+        });
+    </script>
